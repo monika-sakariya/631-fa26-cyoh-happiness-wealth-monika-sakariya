@@ -1,14 +1,27 @@
-# Testing the Easterlin Paradox: Wealth vs. Happiness
-Choose Your Own Hypothesis (CYOH) Project
+# Testing Wealth vs. Happiness (Easterlin Paradox)
+**CYOH Project** | UST-631 Data Preparation and Analysis
 
-| Element | Project Specification |
+## Project Scaffold
+
+| Element | Specification |
 | :--- | :--- |
-| **Working Title** | *Testing the Easterlin Paradox: Resampling Analysis of Wealth and Subjective Well-Being* |
-| **Data Source & Provenance** | World Happiness Report raw tables (Gallup World Poll, UN Sustainable Development Solutions Network; downloaded from worldhappiness.report). |
-| **Target Population** | Globally surveyed nations with reported Log GDP per capita and Life Ladder scores. |
-| **Comparison Groups** | **Group A:** Top 25% Log GDP per capita (High Income) <br> **Group B:** 50th–75th percentile Log GDP per capita (Upper-Middle Income). |
-| **Null Hypothesis ($H_0$)** | The distribution of life evaluation scores is identical between top-quartile and third-quartile nations; wealth labels are interchangeable. |
-| **Test Statistic ($\delta^*$)** | Absolute difference in median life ladder scores ($|\text{Median}_A - \text{Median}_B|$). |
-| **Permutation Test** | Two-group label permutation with 10,000 resamples to generate an empirical null distribution. |
-| **Bootstrap Metrics** | 1. Difference in Means ($\bar{x}_A - \bar{x}_B$, CLT-governed) <br> 2. Difference in Medians ($\text{Median}_A - \text{Median}_B$, Non-CLT). |
-| **Core BS-Audit Vulnerabilities** | 1. Cultural response bias across countries on the 0–10 Cantril Ladder. <br> 2. Disproportionate sampling of urban vs. rural citizens in polling. |
+| **Question** | Does happiness keep increasing with higher income, or does it level off? |
+| **Data Source** | 2025 World Happiness Report (Gallup World Poll via worldhappiness.report). |
+| **Population** | ~140 countries surveyed in the 2025 release. |
+| **Group A** | Top 25% Log GDP per capita (High Income). |
+| **Group B** | 50th–75th percentile Log GDP per capita (Upper-Middle Income). |
+| **Null Hypothesis ($H_0$)** | Happiness scores are the same across both groups; income labels can be swapped randomly. |
+| **Test Statistic** | Difference in medians: $|\text{Median}_A - \text{Median}_B|$. |
+| **Permutation Test** | 10,000 label shuffles to create the null distribution. |
+| **Bootstrap Metric 1 (CLT)** | 95% Confidence Interval for difference in **Means**. |
+| **Bootstrap Metric 2 (Non-CLT)** | 95% Confidence Interval for difference in **Medians**. |
+
+---
+
+## The 5-Point BS-Audit
+
+1. **Source:** Survey data from Gallup World Poll. Does it reach rural populations as well as city residents?
+2. **Comparisons:** Do people from different cultures understand the 0–10 happiness scale in the same way?
+3. **Too-good results:** If happiness plateaus, is it real or an effect of the 0–10 scale ceiling?
+4. **Sanity check:** Does a 0.5-point shift on a 10-point scale make real-world sense for the wealth gap?
+5. **Confirmation bias:** We might want to prove "money can't buy happiness." We must report the true data even if wealth strongly predicts happiness.
